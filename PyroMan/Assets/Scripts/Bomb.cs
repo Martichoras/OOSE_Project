@@ -10,6 +10,9 @@ public class Bomb : MonoBehaviour {
 
 	// - explodeGange
 	private float explodeRange;
+	public void SetExplodeRange (float range){
+		explodeRange = range;
+		}
 
 	private int x;
 	private int z;
@@ -31,10 +34,41 @@ public class Bomb : MonoBehaviour {
 	}
 
 	private void Explode(){
+		float up, down, left, right;
+
+		RaycastHit hit;
+		//right
+		if (Physics.Raycast (this.transform.position, new Vector3 (1, 0, 0), out hit, explodeRange)) {
+			right = hit.distance;//distance is the distance between where we send the ray from and where we hit something.
+		}else{
+			right = explodeRange;//if we dont hit anything, then the bomb eplode out in the explode range
+		}
+		//left
+		if (Physics.Raycast (this.transform.position, new Vector3 (-1, 0, 0), out hit, explodeRange)) {
+			left = hit.distance;
+		}else{
+			left = explodeRange;
+		}
+		//up
+		if (Physics.Raycast (this.transform.position, new Vector3 (0, 0, 1), out hit, explodeRange)) {
+				up = hit.distance;
+		} else {
+				up = explodeRange;
+		}
+		//down
+		if (Physics.Raycast (this.transform.position, new Vector3 (0, 0, -1), out hit, explodeRange)) {
+				down = hit.distance;
+		} else {
+				down = explodeRange;
+		}
+
+
+
 
 		//check if there is something in the area
-		CheckBlastZone ();
+		//CheckBlastZone ();
 		// makes a double forloop, check if the value is 1,
+
 		// if 1, then don't explode
 		// if 2 explode wall
 		// if 3 explode other bomb
@@ -62,22 +96,4 @@ public class Bomb : MonoBehaviour {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
