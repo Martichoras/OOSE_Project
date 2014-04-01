@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class BombBag : MonoBehaviour {
+	public GameObject bomb;
 // object atributes 
 
 	/// <summary>
@@ -17,8 +18,8 @@ public class BombBag : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	//inset defult bombList. 1
-
+	
+		bombsPlaced = 0;
 	//maxBomb
 		maxBombs = 1;
 
@@ -26,10 +27,14 @@ public class BombBag : MonoBehaviour {
 	}
 	
 
-	void PlaceBomb(int x, int z){
-		//check if posselbe to place bomb
+	public void PlaceBomb(int x, int z){
+		//check if possilbe to place bomb
 		//1. if it has any bombs "left" to place
-		//2. if possilbe place bomb under the player - Call bomb class
+		if (maxBombs > bombsPlaced){
+			//2. if possilbe place bomb under the player - Call bomb class
+			Instantiate (
+		}
+
 		//3. call levelGenerator - and change 0 to eg 3 in the the array
 		//4. increase bombPlaced
 		 
@@ -37,3 +42,4 @@ public class BombBag : MonoBehaviour {
 	}
 
 }
+//arraycast - colliders 
