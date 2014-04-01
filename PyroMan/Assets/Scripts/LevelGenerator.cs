@@ -5,8 +5,16 @@ using System.Collections;
 
 
 public class LevelGenerator : MonoBehaviour {
-	
-	public Transform Wall;
+
+	public enum ObjectType {
+		Path = 0,
+		Wall_solid = 1,
+		Crate = 2,
+		Bomb = 4,
+		PowerUp = 5,
+	};
+
+	public Transform Crate;
 	public Transform Wall_solid;
 	
 	private const int xSize = 23; 
@@ -41,10 +49,10 @@ public class LevelGenerator : MonoBehaviour {
 		for (int z=0 ; z<zSize ; z++){
 			for (int x=0 ; x<xSize ; x++){
 				if(LevelGen[z,x] == 1)
-					level[z,x] = Instantiate(Wall_solid, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+					level[z,x] = PlaceObject(Wall_solid,x,z,ObjectType.Wall_solid) as GameObject; //Instantiate(Wall_solid, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
 				
 				if(LevelGen[z,x] == 2)
-					level[z,x] = Instantiate(Wall, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+					level[z,x] = PlaceObject(Crate,x,z,ObjectType.Crate) as GameObject;//Instantiate(Crate, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
 				
 				
 			}
@@ -55,16 +63,31 @@ public class LevelGenerator : MonoBehaviour {
 	void Update () {
 		
 	}
-	// WALL-CALL FUNCTION 
+	// CheckPosition FUNCTION 
 	/// <summary>
-	/// Function for registering neighbouring pixels and sending the values back to something else.
+	/// 
 	/// </summary>
 	/// <param name="x">The x coordinate.</param>
 	/// <param name="z">The z coordinate.</param>
-	public int WallCall(int x,int z)
+	public int CheckPosition(int x,int z)
 	{
-		return LevelGen[z][x];
+		return LevelGen[z,x];
 
 	}
+	/// <summary>
+	/// Places the object.
+	/// </summary>
+	/// <returns>The object.</returns>
+	/// <param name="original">Original.</param>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="z">The z coordinate.</param>
+	public Object PlaceObject(Object original, int x, int z, ObjectType type)
+	{
+		LevelGen[z,x] = (int)type;
+		return Instantiate(original, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity);
+
+	}
+
+
 }
 
