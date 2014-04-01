@@ -2,7 +2,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class Walls : MonoBehaviour {
+/*static public class WallCall(int x, int y)
+{
+	//DO SOMETHING RELATED TO WALLS
+}*/
+
+
+public class LevelGenerator : MonoBehaviour {
 	
 	public Transform Wall;
 	public Transform Wall_solid;
@@ -10,7 +16,7 @@ public class Walls : MonoBehaviour {
 	private const int xSize = 23; 
 	private const int zSize = 19;
 	
-	public int[,] bluePrint = new int[zSize,xSize]		
+	public int[,] LevelGen = new int[zSize,xSize]		
 	{	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 		{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
 		{ 1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1 },
@@ -32,24 +38,24 @@ public class Walls : MonoBehaviour {
 		{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	};
 	
-
+	
 	void Start () {
-
-		GameObject[,] maze = new GameObject[zSize,xSize];
+		
+		GameObject[,] level = new GameObject[zSize,xSize];
 		for (int z=0 ; z<zSize ; z++){
 			for (int x=0 ; x<xSize ; x++){
-				if(bluePrint[z,x] == 1)
-					maze[z,x] = Instantiate(Wall_solid, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
-	
-				if(bluePrint[z,x] == 2)
-					maze[z,x] = Instantiate(Wall, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
-
-
+				if(LevelGen[z,x] == 1)
+					level[z,x] = Instantiate(Wall_solid, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+				
+				if(LevelGen[z,x] == 2)
+					level[z,x] = Instantiate(Wall, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+				
+				
 			}
 		}
-
+		
 	}
-
+	
 	void Update () {
 		
 	}
