@@ -2,10 +2,6 @@
 using UnityEngine;
 using System.Collections;
 
-/*static public class WallCall(int x, int y)
-{
-	//DO SOMETHING RELATED TO WALLS
-}*/
 
 
 public class LevelGenerator : MonoBehaviour {
@@ -15,7 +11,7 @@ public class LevelGenerator : MonoBehaviour {
 	
 	private const int xSize = 23; 
 	private const int zSize = 19;
-	
+
 	public int[,] LevelGen = new int[zSize,xSize]		
 	{	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 		{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
@@ -59,4 +55,16 @@ public class LevelGenerator : MonoBehaviour {
 	void Update () {
 		
 	}
+	// WALL-CALL FUNCTION 
+	/// <summary>
+	/// Function for registering neighbouring pixels and sending the values back to something else.
+	/// </summary>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="z">The z coordinate.</param>
+	public int WallCall(int x,int z)
+	{
+		return LevelGen[z][x];
+
+	}
 }
+
