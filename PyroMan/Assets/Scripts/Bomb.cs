@@ -10,13 +10,11 @@ public class Bomb : MonoBehaviour {
 
 	// - explodeGange
 	private float explodeRange;
-	public void SetExplodeRange (float range){
-		explodeRange = range;
-		}
 
 	private int x;
 	private int z;
 	private BombBag playerBag;
+
 
 
 	 void Start (){
@@ -38,60 +36,58 @@ public class Bomb : MonoBehaviour {
 
 		RaycastHit hit;
 		//right
+		List<Collider> hitObjects = new List<Collider>();
+
 		if (Physics.Raycast (this.transform.position, new Vector3 (1, 0, 0), out hit, explodeRange)) {
 			right = hit.distance;//distance is the distance between where we send the ray from and where we hit something.
+			hitObjects.Add(hit.collider);
 		}else{
 			right = explodeRange;//if we dont hit anything, then the bomb eplode out in the explode range
 		}
 		//left
 		if (Physics.Raycast (this.transform.position, new Vector3 (-1, 0, 0), out hit, explodeRange)) {
 			left = hit.distance;
+			hitObjects.Add(hit.collider);
 		}else{
 			left = explodeRange;
 		}
 		//up
 		if (Physics.Raycast (this.transform.position, new Vector3 (0, 0, 1), out hit, explodeRange)) {
-				up = hit.distance;
+			up = hit.distance;
+			hitObjects.Add(hit.collider);
 		} else {
-				up = explodeRange;
+			up = explodeRange;
 		}
 		//down
 		if (Physics.Raycast (this.transform.position, new Vector3 (0, 0, -1), out hit, explodeRange)) {
-				down = hit.distance;
+			down = hit.distance;
+			hitObjects.Add(hit.collider);
 		} else {
-				down = explodeRange;
+			down = explodeRange;
 		}
 
+		for (int i = 0; i < hitObjects.Count; i++) {
+			GameObject obj = hitObjects[i].gameObject;
+			if(obj.tag== "Crate")
+				Destroy(obj);
+			else if(obj.tag == "Player")
+				Destroy(obj);
+		}
 
-
-
-		//check if there is something in the area
-		//CheckBlastZone ();
-		// makes a double forloop, check if the value is 1,
-
-		// if 1, then don't explode
-		// if 2 explode wall
-		// if 3 explode other bomb
-		// if 8 explode player
-		// if 9 explode/destroy player2
 
 
 		//call playerBag to say that bomb is exploded/destroyed - so bombBag will create new bomb. This is done by decresing bombPlaced
 		//Instantiate the explosion and explode!!!
 		Destroy (gameObject);
+		playerBag.AfterExplosion ();
 	}
 
 
-
-
-	private void CheckBlastZone (){
-		//call level generator, function wallCall to check the positions araound the bomb. (int x, int z, int radius) then gets an array with the 0,1,2,3,9,8 (9,8 = players) neghboor values
-
-
-	}
-
-	private void SetBombData(int x, int z, int radius, BombBag playerBag){
-
+	public void SetBombData(int x, int z, int radius, BombBag playerBag){
+		this.x = x;
+		this.z = z;
+		this.explodeRange = radius;
+		this.playerBag = playerBag;
 
 	}
 

@@ -11,9 +11,10 @@ GameObject:
   - 33: {fileID: 3300000}
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Wall_solid
-  m_TagString: Wall
+  m_Name: Player_1
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,8 +26,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.24188137, y: 2.15510559, z: -.758775711}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -15.9808607, y: -.0966289043, z: 15.9937115}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -41,7 +42,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: db6ac32b8f6e92c4990a42b77bf7d8ab, type: 2}
+  - {fileID: 2100000, guid: fd01eea39075631498e6c3f14a3f1ae8, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -63,12 +64,24 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
-  m_IsTrigger: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffc27103b1978d4aaf7e4b56322a583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelControl: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

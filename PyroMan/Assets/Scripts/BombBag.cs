@@ -38,16 +38,20 @@ public class BombBag : MonoBehaviour {
 			//2. if possilbe place bomb under the player - Call bomb class - Emil dose this
 		
 				//3. call levelGenerator - and change 0 to eg 3 in the the array
-			GameObject bombObject = level.PlaceObject(bomb,x,z) as GameObject;
+			GameObject bombObject = level.PlaceObject(bomb,x,z, LevelGenerator.ObjectType.Bomb) as GameObject;
 
 			Bomb bombScript = bombObject.GetComponent<Bomb>(); 
-			bombScript.SetExplodeRange(explodeRange);
+			bombScript.SetBombData(x,z, explodeRange, this);
 
 		//4. increase bombPlaced
 			bombsPlaced++;
 
-		} 
+		}
 
+	}
+	public void AfterExplosion(){
+		bombsPlaced--;
+	
 	}
 
 }
