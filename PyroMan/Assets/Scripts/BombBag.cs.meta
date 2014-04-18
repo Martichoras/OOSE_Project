@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 6e04ede7c6520074289da030b4e5bc4e
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bomb: {fileID: 100012, guid: fd759452be478dc40be2817eb0c9ad7c, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

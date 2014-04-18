@@ -10,17 +10,24 @@ public class Character : MonoBehaviour {
 	/// <summary>
 	/// Reference to the object that keeps track of objects in the level.
 	/// </summary>
-	public GameObject levelControl;
+	private LevelGenerator levelControl = null;
 
 	//---------- Movement related ----------
+	/// <summary>
+	/// Player number.
+	/// </summary>
+	private int player;
+	public void SetPlayer(int val) { this.player = val; }
 	/// <summary>
 	/// The x-position of the character.
 	/// </summary>
 	private int x;
+	public void SetX(int val) { this.x = val; }
 	/// <summary>
 	/// The y-position of the character.
 	/// </summary>
 	private int z;
+	public void SetZ(int val) { this.z = val; }
 	/// <summary>
 	/// The target position that the character is currently trying to move towards.
 	/// </summary>
@@ -60,10 +67,17 @@ public class Character : MonoBehaviour {
 	/// </summary>
 	void Start () {
 		if (this.levelControl == null){
-			this.levelControl = GameObject.FindWithTag("LevelControl");
+			this.levelControl = GameObject.FindWithTag("LevelControl").GetComponent<LevelGenerator>();
 		}
-		this.bombBag = new BombBag();
+		if (this.bombBag == null){
+			MonoBehaviour[] scripts = this.GetComponents<MonoBehaviour>();
+			foreach (MonoBehaviour elem in scripts){
+				if (elem.GetType() == typeof(BombBag))
+					this.bombBag = (BombBag)elem;
+			}
+		}
 		this.isMoving = false;
+		this.target = this.transform.position;
 	}
 
 	/// <summary>
@@ -71,9 +85,24 @@ public class Character : MonoBehaviour {
 	/// </summary>
 	void Update () {
 
+		float h = 0, v = 0;
 		// Get the input values from the user (arrow keys or WASD)
-		float h = Input.GetAxis("Horizontal"); // Left & right
-		float v = Input.GetAxis("Vertical"); // Up & down
+		if (this.player == 1) {
+			h = Input.GetAxis("HorizontalP1"); // Left & right
+			v = Input.GetAxis("VerticalP1"); // Up & down
+			if (Input.GetButtonDown("BombP1")) {
+				this.PlaceBomb();
+				Debug.Log("bomb P1");
+			}
+		}
+		else if (this.player == 2) {
+			h = Input.GetAxis("HorizontalP2"); // Left & right
+			v = Input.GetAxis("VerticalP2"); // Up & down
+			if (Input.GetButtonDown("BombP2")) {
+				this.PlaceBomb();
+				Debug.Log("bomb P2");
+			}
+		}
 
 		// Checks if the user is pressing a movement key
 		if (h > 0.1f){ // Right
@@ -91,11 +120,6 @@ public class Character : MonoBehaviour {
 		// Move the character
 		if (this.isMoving)
 			this.Move();
-
-		if (Input.GetButtonDown("Bomb")){
-			this.PlaceBomb();
-			Debug.Log("bomb");
-		}
 
 	}
 
@@ -117,20 +141,28 @@ public class Character : MonoBehaviour {
 		// Check if the character can move in the dir direction
 		switch (dir){
 		case Direction.Right:
-			//if (this.levelControl.GetComponent<TYPE>().CHECKPOSITION(this.x + 1, this.z))
+			if (this.levelControl.CheckPosition(this.x + 1, this.z) == (int)LevelGenerator.ObjectType.Path) {
 				this.target = new Vector3(this.transform.position.x + 2.0f, 0.0f, this.transform.position.z);
+				this.x++;
+			}
 			break;
 		case Direction.Left:
-			//if (this.levelControl.GetComponent<TYPE>().CHECKPOSITION(this.x - 1, this.z))
+			if (this.levelControl.CheckPosition(this.x - 1, this.z) == (int)LevelGenerator.ObjectType.Path) {
 				this.target = new Vector3(this.transform.position.x - 2.0f, 0.0f, this.transform.position.z);
+				this.x--;
+			}
 			break;
 		case Direction.Up:
-			//if (this.levelControl.GetComponent<TYPE>().CHECKPOSITION(this.x, this.z + 1))
+			if (this.levelControl.CheckPosition(this.x, this.z - 1) == (int)LevelGenerator.ObjectType.Path) {
 				this.target = new Vector3(this.transform.position.x, 0.0f, this.transform.position.z + 2.0f);
+				this.z--;
+			}
 			break;
 		case Direction.Down:
-			//if (this.levelControl.GetComponent<TYPE>().CHECKPOSITION(this.x, this.z - 1))
+			if (this.levelControl.CheckPosition(this.x, this.z + 1) == (int)LevelGenerator.ObjectType.Path){
 				this.target = new Vector3(this.transform.position.x, 0.0f, this.transform.position.z - 2.0f);
+				this.z++;
+			}
 			break;
 		default:
 			break;

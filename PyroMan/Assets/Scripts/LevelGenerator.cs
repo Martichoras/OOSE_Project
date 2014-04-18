@@ -15,9 +15,9 @@ public class LevelGenerator : MonoBehaviour {
 		PowerUp = 5,
 	};
 
-	public Transform Crate;
-	public Transform Wall_solid;
-	public Transform Player;
+	public GameObject Crate;
+	public GameObject Wall_solid;
+	public GameObject Player;
 
 	private const int xSize = 23; 
 	private const int zSize = 19;
@@ -46,24 +46,24 @@ public class LevelGenerator : MonoBehaviour {
 	
 	
 	void Start () {
-		int PlayerCount = 1;
+		int playerCount = 1;
 		GameObject[,] level = new GameObject[zSize,xSize];
 		for (int z=0 ; z<zSize ; z++){
 			for (int x=0 ; x<xSize ; x++){
-				if(LevelGen[z,x] == 1)
+				if(LevelGen[z,x] == (int)ObjectType.Wall_solid)
 					level[z,x] = PlaceObject(Wall_solid,x,z,ObjectType.Wall_solid) as GameObject; //Instantiate(Wall_solid, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
 				
-				if(LevelGen[z,x] == 2)
+				if(LevelGen[z,x] == (int)ObjectType.Crate)
 					level[z,x] = PlaceObject(Crate,x,z,ObjectType.Crate) as GameObject;//Instantiate(Crate, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
 
-				if(LevelGen[z,x] == 'x'){
+				if(LevelGen[z,x] == (int)ObjectType.Player){
 
-					level[z,x] = PlaceObject(Player,x,z,ObjectType.Player) as GameObject;//Instantiate(Crate, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+					level[z,x] = PlaceObject(Player,x,z,ObjectType.Player) as GameObject;//Instantiate(Player, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
 					Character player = level[z,x].GetComponent<Character>();
-					player.SetPlayer = PlayerCount;
-					player.SetX = x;
-					player.SetZ = z;
-					PlayerCount++;
+					player.SetPlayer(playerCount);
+					player.SetX(x);
+					player.SetZ(z);
+					playerCount++;
 					LevelGen[z,x] = 0;
 
 				}

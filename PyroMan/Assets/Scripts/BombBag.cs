@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class BombBag : MonoBehaviour {
-	public Transform bomb;
-// object atributes 
+	public GameObject bomb;
+	// object atributes 
 
 	/// <summary>
 	/// The bombplaced. tells how many not exploded bombs the player have placed in the game
@@ -19,7 +19,7 @@ public class BombBag : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
 		GameObject temp = GameObject.FindGameObjectWithTag ("LevelControl");//finds levelGenerator
 		level = temp.GetComponent<LevelGenerator> ();// saved the script in level
 
@@ -37,8 +37,8 @@ public class BombBag : MonoBehaviour {
 		if (maxBombs > bombsPlaced){
 			//2. if possilbe place bomb under the player - Call bomb class - Emil dose this
 		
-				//3. call levelGenerator - and change 0 to eg 3 in the the array
-			GameObject bombObject = level.PlaceObject(bomb,x,z, LevelGenerator.ObjectType.Bomb) as GameObject;
+			//3. call levelGenerator - and change 0 to eg 3 in the the array
+			GameObject bombObject = this.level.PlaceObject(bomb,x,z, LevelGenerator.ObjectType.Bomb) as GameObject;
 
 			Bomb bombScript = bombObject.GetComponent<Bomb>(); 
 			bombScript.SetBombData(x,z, explodeRange, this);
@@ -55,4 +55,3 @@ public class BombBag : MonoBehaviour {
 	}
 
 }
-//arraycast - colliders 
