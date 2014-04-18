@@ -49,9 +49,9 @@ public class BombBag : MonoBehaviour {
 		}
 
 	}
-	public void AfterExplosion(){
+	public void AfterExplosion(int x, int z){
 		bombsPlaced--;
-	
+		level.ClearPosition(x,z);
 	}
 
 }

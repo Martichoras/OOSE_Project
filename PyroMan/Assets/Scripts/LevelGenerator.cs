@@ -100,6 +100,12 @@ public class LevelGenerator : MonoBehaviour {
 
 	}
 
+	public void ClearPosition(int x, int z){
+
+		LevelGen[z,x] = (int)ObjectType.Path;
+
+
+	}
 
 }
 

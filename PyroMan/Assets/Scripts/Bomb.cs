@@ -79,7 +79,7 @@ public class Bomb : MonoBehaviour {
 		//call playerBag to say that bomb is exploded/destroyed - so bombBag will create new bomb. This is done by decresing bombPlaced
 		//Instantiate the explosion and explode!!!
 		Destroy (gameObject);
-		playerBag.AfterExplosion ();
+		playerBag.AfterExplosion (x,z);
 	}
 
 
