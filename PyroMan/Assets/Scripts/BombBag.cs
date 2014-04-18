@@ -27,7 +27,7 @@ public class BombBag : MonoBehaviour {
 	//maxBomb
 		maxBombs = 1;
 
-		explodeRange = 1;
+		explodeRange = 2;
 	}
 	
 

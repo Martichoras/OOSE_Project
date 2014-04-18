@@ -70,6 +70,7 @@ public class Bomb : MonoBehaviour {
 			GameObject obj = hitObjects[i].gameObject;
 			if(obj.tag == "Crate")
 				Destroy(obj);
+
 			else if(obj.tag == "Player")
 				Destroy(obj);
 		}

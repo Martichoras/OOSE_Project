@@ -53,9 +53,12 @@ public class LevelGenerator : MonoBehaviour {
 				if(LevelGen[z,x] == (int)ObjectType.Wall_solid)
 					level[z,x] = PlaceObject(Wall_solid,x,z,ObjectType.Wall_solid) as GameObject; //Instantiate(Wall_solid, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
 				
-				if(LevelGen[z,x] == (int)ObjectType.Crate)
+				if(LevelGen[z,x] == (int)ObjectType.Crate){
 					level[z,x] = PlaceObject(Crate,x,z,ObjectType.Crate) as GameObject;//Instantiate(Crate, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
-
+					Crate crate = level[z,x].GetComponent<Crate>();
+					crate.SetX(x);
+					crate.SetZ(z);
+				}
 				if(LevelGen[z,x] == (int)ObjectType.Player){
 
 					level[z,x] = PlaceObject(Player,x,z,ObjectType.Player) as GameObject;//Instantiate(Player, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
