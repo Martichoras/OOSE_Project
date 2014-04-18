@@ -35,7 +35,7 @@ public class Character : MonoBehaviour {
 	private float moveSpeed = 10.0f;
 
 	//------------ Bomb related ------------
-	//public BombManager bombMng;
+	private BombBag bombBag;
 
 	//===============================================
 	//===================  Enums  ===================
@@ -62,6 +62,7 @@ public class Character : MonoBehaviour {
 		if (this.levelControl == null){
 			this.levelControl = GameObject.FindWithTag("LevelControl");
 		}
+		this.bombBag = new BombBag();
 		this.isMoving = false;
 	}
 
@@ -91,8 +92,9 @@ public class Character : MonoBehaviour {
 		if (this.isMoving)
 			this.Move();
 
-		if (Input.GetButton("Bomb")){
+		if (Input.GetButtonDown("Bomb")){
 			this.PlaceBomb();
+			Debug.Log("bomb");
 		}
 
 	}
@@ -154,6 +156,6 @@ public class Character : MonoBehaviour {
 	/// Place a bomb beneath the character.
 	/// </summary>
 	private void PlaceBomb() {
-		//this.bombMng.PutBomb();
+		this.bombBag.PlaceBomb(this.x, this.z);
 	}
 }

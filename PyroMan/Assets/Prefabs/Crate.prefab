@@ -12,8 +12,8 @@ GameObject:
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
   m_Layer: 0
-  m_Name: Wall
-  m_TagString: Untagged
+  m_Name: Crate
+  m_TagString: Crate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
