@@ -5,6 +5,7 @@ MonoImporter:
   defaultReferences:
   - Crate: {fileID: 400000, guid: 16bc5f134b7ddf047bc2240abfb7852c, type: 2}
   - Wall_solid: {fileID: 400000, guid: ba083ebcbb407d542a67936fc19c410a, type: 2}
+  - Player: {fileID: 400000, guid: 86ff01560e2c1fe42ab2c50c4df93e7d, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

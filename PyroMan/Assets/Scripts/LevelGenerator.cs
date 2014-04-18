@@ -7,6 +7,7 @@ using System.Collections;
 public class LevelGenerator : MonoBehaviour {
 
 	public enum ObjectType {
+		Player = 'x',
 		Path = 0,
 		Wall_solid = 1,
 		Crate = 2,
@@ -16,13 +17,14 @@ public class LevelGenerator : MonoBehaviour {
 
 	public Transform Crate;
 	public Transform Wall_solid;
-	
+	public Transform Player;
+
 	private const int xSize = 23; 
 	private const int zSize = 19;
 
 	public int[,] LevelGen = new int[zSize,xSize]		
 	{	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
-		{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+		{ 1,'x',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
 		{ 1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1 },
 		{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
 		{ 1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1 },
@@ -38,13 +40,13 @@ public class LevelGenerator : MonoBehaviour {
 		{ 1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1 },
 		{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
 		{ 1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1 },
-		{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+		{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'x',1 },
 		{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	};
 	
 	
 	void Start () {
-		
+		int PlayerCount = 1;
 		GameObject[,] level = new GameObject[zSize,xSize];
 		for (int z=0 ; z<zSize ; z++){
 			for (int x=0 ; x<xSize ; x++){
@@ -53,8 +55,18 @@ public class LevelGenerator : MonoBehaviour {
 				
 				if(LevelGen[z,x] == 2)
 					level[z,x] = PlaceObject(Crate,x,z,ObjectType.Crate) as GameObject;//Instantiate(Crate, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
-				
-				
+
+				if(LevelGen[z,x] == 'x'){
+
+					level[z,x] = PlaceObject(Player,x,z,ObjectType.Player) as GameObject;//Instantiate(Crate, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+					Character player = level[z,x].GetComponent<Character>();
+					player.SetPlayer = PlayerCount;
+					player.SetX = x;
+					player.SetZ = z;
+					PlayerCount++;
+					LevelGen[z,x] = 0;
+
+				}
 			}
 		}
 		
