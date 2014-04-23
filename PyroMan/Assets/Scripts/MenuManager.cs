@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MenuManager : MonoBehaviour {
 
-	public enum ItemTypes { Start, Instructions, Exit };
+	public enum ItemTypes { Start, Restart, MainMenu, Instructions, Exit };
 	public ItemTypes[] types;
 	public MenuItem[] items;
 	private int currentlySelected = 0;
@@ -42,8 +42,11 @@ public class MenuManager : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) {
 			switch (this.types[this.currentlySelected]) {
-				case ItemTypes.Start:
+				case ItemTypes.Start: case ItemTypes.Restart:
 					Application.LoadLevel("GameScreen");
+					break;
+				case ItemTypes.MainMenu:
+					Application.LoadLevel("TitleMenu");
 					break;
 				case ItemTypes.Instructions:
 					// Load an instructions screen or in someway present instructions

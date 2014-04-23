@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/TitleMenu.unity
   - enabled: 1
     path: Assets/GameScreen.unity
+  - enabled: 1
+    path: Assets/GameOverScreen.unity
