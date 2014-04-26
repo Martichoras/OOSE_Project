@@ -3,15 +3,6 @@ using System.Collections;
 
 public class MenuItem : MonoBehaviour {
 
-	/// <summary>
-	/// The z-position of the item when not selected.
-	/// </summary>
-	private static float inactiveZ = 0;
-	/// <summary>
-	/// The z-position of the item when selected.
-	/// </summary>
-	private static float activeZ = -0.5f;
-
 	private static float animMoveDist = 0.5f;
 	/// <summary>
 	/// The time the animation takes in seconds.
@@ -42,11 +33,12 @@ public class MenuItem : MonoBehaviour {
 		this.enabled = true;
 	}
 
-	void Start() {
+	void Awake() {
 		this.enabled = false;
 	}
 
 	void Update() {
+		
 		// Move it
 		this.transform.position = Vector3.Lerp(this.transform.position, this.dest, Time.deltaTime * MenuItem.animationSpeed);
 		// If close enough, allow user to select another item

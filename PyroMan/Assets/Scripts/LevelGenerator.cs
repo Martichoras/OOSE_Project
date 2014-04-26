@@ -43,25 +43,28 @@ public class LevelGenerator : MonoBehaviour {
 		{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,'x',1 },
 		{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	};
-	
-	
+
+	private bool isGameOver = false;
+	private float gameOverCounter = 0.0f;
+
 	void Start () {
+		this.enabled = false;
 		int playerCount = 1;
 		GameObject[,] level = new GameObject[zSize,xSize];
 		for (int z=0 ; z<zSize ; z++){
 			for (int x=0 ; x<xSize ; x++){
 				if(LevelGen[z,x] == (int)ObjectType.Wall_solid)
-					level[z,x] = PlaceObject(Wall_solid,x,z,ObjectType.Wall_solid) as GameObject; //Instantiate(Wall_solid, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+					level[z,x] = PlaceObject(Wall_solid,x,z,ObjectType.Wall_solid) as GameObject;
 				
 				if(LevelGen[z,x] == (int)ObjectType.Crate){
-					level[z,x] = PlaceObject(Crate,x,z,ObjectType.Crate) as GameObject;//Instantiate(Crate, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+					level[z,x] = PlaceObject(Crate,x,z,ObjectType.Crate) as GameObject;
 					Crate crate = level[z,x].GetComponent<Crate>();
 					crate.SetX(x);
 					crate.SetZ(z);
 				}
 				if(LevelGen[z,x] == (int)ObjectType.Player){
 
-					level[z,x] = PlaceObject(Player,x,z,ObjectType.Player) as GameObject;//Instantiate(Player, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity) as GameObject;
+					level[z,x] = PlaceObject(Player,x,z,ObjectType.Player) as GameObject;
 					Character player = level[z,x].GetComponent<Character>();
 					player.SetPlayer(playerCount);
 					player.SetX(x);
@@ -76,7 +79,10 @@ public class LevelGenerator : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+		if (this.isGameOver) {
+			if (Time.timeSinceLevelLoad - this.gameOverCounter > 2.0f) // 2 seconds have passed since the second last player died
+				Application.LoadLevel("GameOverScreen");
+		}
 	}
 	// CheckPosition FUNCTION 
 	/// <summary>
@@ -108,6 +114,18 @@ public class LevelGenerator : MonoBehaviour {
 		LevelGen[z,x] = (int)ObjectType.Path;
 
 
+	}
+
+	public void OnGameOver() {
+		GameObject[] playersLeft = GameObject.FindGameObjectsWithTag("Player");
+		if (playersLeft.Length == 1) {
+			this.enabled = true;
+			this.isGameOver = true;
+			this.gameOverCounter = Time.timeSinceLevelLoad;
+
+			Character player = playersLeft[0].GetComponent<Character>();
+			GameStats.OnGameWon(player.GetPlayer());
+		}
 	}
 
 }
