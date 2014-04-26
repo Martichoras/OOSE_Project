@@ -11,15 +11,15 @@ public class MenuItem : MonoBehaviour {
 	/// The z-position of the item when selected.
 	/// </summary>
 	private static float activeZ = -0.5f;
+
+	private static float animMoveDist = 0.5f;
 	/// <summary>
 	/// The time the animation takes in seconds.
 	/// </summary>
 	private static float animationSpeed = 5.0f;
 
-	/// <summary>
-	/// True if the item is currently selected, otherwise false.
-	/// </summary>
-	private bool on = false;
+
+	private Vector3 dest;
 	/// <summary>
 	/// True if the animation of the item is done so the user can choose another button.
 	/// </summary>
@@ -33,29 +33,29 @@ public class MenuItem : MonoBehaviour {
 	/// </summary>
 	/// <param name="on">If true, the menu item will move towards the screen. Reverse if false.</param>
 	public void OnSelect(bool on) {
-		this.on = on;
+		if (on)
+			this.dest = this.transform.position + this.transform.InverseTransformDirection(Vector3.back) * MenuItem.animMoveDist;
+		else
+			this.dest = this.transform.position + this.transform.InverseTransformDirection(Vector3.forward) * MenuItem.animMoveDist;
+		
 		this.isAnimDone = false;
 		this.enabled = true;
 	}
 
+	void Start() {
+		this.enabled = false;
+	}
+
 	void Update() {
-		// Calculate the position at which this item is moving towards
-		Vector3 destination = this.transform.position;
-		if (this.on) {
-			destination.z = MenuItem.activeZ;
-		}
-		else {
-			destination.z = MenuItem.inactiveZ;
-		}
 		// Move it
-		this.transform.position = Vector3.Lerp(this.transform.position, destination, Time.deltaTime * MenuItem.animationSpeed);
+		this.transform.position = Vector3.Lerp(this.transform.position, this.dest, Time.deltaTime * MenuItem.animationSpeed);
 		// If close enough, allow user to select another item
-		float distance = (this.transform.position - destination).magnitude;
+		float distance = (this.transform.position - this.dest).magnitude;
 		if (distance < 0.1f) {
 			this.isAnimDone = true;
 			// If position is practically reached, stop this animation and set position of this item to the destination.
 			if (distance < 0.01f) {
-				this.transform.position = destination;
+				this.transform.position = this.dest;
 				this.enabled = false;
 			}
 		}
