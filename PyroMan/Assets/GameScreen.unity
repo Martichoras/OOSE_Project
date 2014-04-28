@@ -158,7 +158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Crate: {fileID: 100000, guid: 16bc5f134b7ddf047bc2240abfb7852c, type: 2}
   Wall_solid: {fileID: 100000, guid: ba083ebcbb407d542a67936fc19c410a, type: 2}
-  Player: {fileID: 100000, guid: 86ff01560e2c1fe42ab2c50c4df93e7d, type: 2}
+  Player:
+  - {fileID: 100034, guid: ce39ffc7bfa13bf4b99de0902e07850c, type: 2}
+  - {fileID: 100034, guid: 8ad06b462791d65448a271a1b9bf64a5, type: 2}
 --- !u!1 &1640207639
 GameObject:
   m_ObjectHideFlags: 0

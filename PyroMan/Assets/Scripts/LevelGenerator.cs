@@ -17,7 +17,7 @@ public class LevelGenerator : MonoBehaviour {
 
 	public GameObject Crate;
 	public GameObject Wall_solid;
-	public GameObject Player;
+	public GameObject []Player;
 
 	private const int xSize = 23; 
 	private const int zSize = 19;
@@ -64,7 +64,7 @@ public class LevelGenerator : MonoBehaviour {
 				}
 				if(LevelGen[z,x] == (int)ObjectType.Player){
 
-					level[z,x] = PlaceObject(Player,x,z,ObjectType.Player) as GameObject;
+					level[z,x] = PlaceObject(Player[playerCount-1],x,z,ObjectType.Player) as GameObject;
 					Character player = level[z,x].GetComponent<Character>();
 					player.SetPlayer(playerCount);
 					player.SetX(x);
@@ -105,7 +105,8 @@ public class LevelGenerator : MonoBehaviour {
 	public Object PlaceObject(Object original, int x, int z, ObjectType type)
 	{
 		LevelGen[z,x] = (int)type;
-		return Instantiate(original, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity);
+		//return Instantiate(original, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity);
+		return Instantiate(original, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1),( original as GameObject).transform.rotation);
 
 	}
 
