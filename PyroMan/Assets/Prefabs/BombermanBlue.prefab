@@ -286,9 +286,10 @@ GameObject:
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: BombermanBlue
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,7 +492,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -12.4094687, y: -.580550909, z: -2.54541874}
+  m_LocalPosition: {x: 5.35123062, y: -.580550909, z: -6.95990276}
   m_LocalScale: {x: .101442084, y: .101442084, z: .101442084}
   m_Children:
   - {fileID: 400004}
@@ -825,6 +826,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 100012, guid: fd759452be478dc40be2817eb0c9ad7c, type: 2}
+--- !u!136 &13600000
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 6
+  m_Height: 28
+  m_Direction: 1
+  m_Center: {x: 0, y: 13, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
