@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 079c234108b6a2247a872cc5f65443e2
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: bevelPolygon1
+    100002: bevelPolygon18
+    100004: bevelPolygon19
+    100006: bevelPolygon2
+    100008: bevelPolygon20
+    100010: bevelPolygon21
+    100012: bevelPolygon22
+    100014: bevelPolygon23
+    100016: bevelPolygon24
+    100018: bevelPolygon25
+    100020: bevelPolygon26
+    100022: bevelPolygon27
+    100024: bevelPolygon4
+    100026: bevelPolygon5
+    100028: bevelPolygon7
+    100030: CompoundPath1
+    100032: CompoundPath2
+    100034: polySurface1
+    100036: //RootNode
+    100038: transform10
+    100040: transform11
+    100042: transform12
+    100044: transform13
+    100046: transform14
+    100048: transform15
+    100050: transform16
+    100052: transform17
+    100054: transform2
+    100056: transform3
+    100058: transform4
+    100060: transform5
+    100062: transform6
+    100064: transform7
+    100066: transform8
+    100068: transform9
+    400000: bevelPolygon1
+    400002: bevelPolygon18
+    400004: bevelPolygon19
+    400006: bevelPolygon2
+    400008: bevelPolygon20
+    400010: bevelPolygon21
+    400012: bevelPolygon22
+    400014: bevelPolygon23
+    400016: bevelPolygon24
+    400018: bevelPolygon25
+    400020: bevelPolygon26
+    400022: bevelPolygon27
+    400024: bevelPolygon4
+    400026: bevelPolygon5
+    400028: bevelPolygon7
+    400030: CompoundPath1
+    400032: CompoundPath2
+    400034: polySurface1
+    400036: //RootNode
+    400038: transform10
+    400040: transform11
+    400042: transform12
+    400044: transform13
+    400046: transform14
+    400048: transform15
+    400050: transform16
+    400052: transform17
+    400054: transform2
+    400056: transform3
+    400058: transform4
+    400060: transform5
+    400062: transform6
+    400064: transform7
+    400066: transform8
+    400068: transform9
+    2300000: polySurface1
+    3300000: polySurface1
+    4300000: polySurface1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
