@@ -17,6 +17,7 @@ public class Character : MonoBehaviour {
 	/// Player number.
 	/// </summary>
 	private int player;
+	public int GetPlayer() { return this.player; }
 	public void SetPlayer(int val) { this.player = val; }
 	/// <summary>
 	/// The x-position of the character.
@@ -189,5 +190,10 @@ public class Character : MonoBehaviour {
 	/// </summary>
 	private void PlaceBomb() {
 		this.bombBag.PlaceBomb(this.x, this.z);
+	}
+
+	void OnDestroy() {
+		if (this.levelControl)
+			this.levelControl.OnGameOver();
 	}
 }

@@ -22,7 +22,8 @@ public class Crate : MonoBehaviour {
 	}
 
 	void OnDestroy (){
-		GameObject level = GameObject.FindGameObjectWithTag ("LevelControl");
-		level.GetComponent<LevelGenerator> ().ClearPosition (x, z);
+		GameObject level;
+		if (level = GameObject.FindGameObjectWithTag ("LevelControl"))
+			level.GetComponent<LevelGenerator>().ClearPosition (x, z);
 	}
 }
