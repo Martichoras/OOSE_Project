@@ -15,6 +15,7 @@ public class Bomb : MonoBehaviour {
 	private int z;
 	private BombBag playerBag;
 
+	public GameObject ExplosionPrefab;
 
 
 	 void Start (){
@@ -37,6 +38,7 @@ public class Bomb : MonoBehaviour {
 		RaycastHit hit;
 		//right
 		List<Collider> hitObjects = new List<Collider>();
+		Instantiate(ExplosionPrefab, this.transform.position, Quaternion.identity);
 
 		if (Physics.Raycast (this.transform.position, new Vector3 (1, 0, 0), out hit, explodeRange)) {
 			right = hit.distance;//distance is the distance between where we send the ray from and where we hit something.
@@ -65,14 +67,35 @@ public class Bomb : MonoBehaviour {
 		} else {
 			down = explodeRange;
 		}
+		
+
+		for (float i = 0; i <= explodeRange; i += LevelGenerator.gameUnit) {
+			if (i<= right){
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(i,0, 0), Quaternion.identity);
+			}
+			if (i<=left){
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(-i,0, 0), Quaternion.identity);
+			}
+			if (i<=up){
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0,0,i), Quaternion.identity);	
+			}
+			if (i<=down){
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0,0,-i), Quaternion.identity);
+
+			}
+		}
+
 
 		for (int i = 0; i < hitObjects.Count; i++) {
 			GameObject obj = hitObjects[i].gameObject;
+
+
 			if(obj.tag == "Crate")
-				Destroy(obj);
+			Destroy(obj);
 
 			else if(obj.tag == "Player")
 				Destroy(obj);
+
 		}
 
 

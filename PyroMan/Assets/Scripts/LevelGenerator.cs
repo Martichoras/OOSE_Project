@@ -19,6 +19,8 @@ public class LevelGenerator : MonoBehaviour {
 	public GameObject Wall_solid;
 	public GameObject []Player;
 
+	public static float gameUnit = 2.0f;
+
 	private const int xSize = 23; 
 	private const int zSize = 19;
 
@@ -105,8 +107,7 @@ public class LevelGenerator : MonoBehaviour {
 	public Object PlaceObject(Object original, int x, int z, ObjectType type)
 	{
 		LevelGen[z,x] = (int)type;
-		//return Instantiate(original, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1), Quaternion.identity);
-		return Instantiate(original, new Vector3(x*2.0f-xSize+1, 0.0f, -z*2.0f+zSize-1),( original as GameObject).transform.rotation);
+		return Instantiate(original, new Vector3(x*gameUnit-xSize+1, 0.0f, -z*gameUnit+zSize-1),( original as GameObject).transform.rotation);
 
 	}
 
