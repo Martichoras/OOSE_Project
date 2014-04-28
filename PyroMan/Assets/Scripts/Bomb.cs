@@ -38,49 +38,49 @@ public class Bomb : MonoBehaviour {
 		RaycastHit hit;
 		//right
 		List<Collider> hitObjects = new List<Collider>();
-		Instantiate(ExplosionPrefab, this.transform.position, Quaternion.identity);
-
-		if (Physics.Raycast (this.transform.position, new Vector3 (1, 0, 0), out hit, explodeRange)) {
+		
+		float unit = LevelGenerator.gameUnit;
+		if (Physics.Raycast (this.transform.position, new Vector3 (1, 0, 0), out hit, explodeRange*unit)) {
 			right = hit.distance;//distance is the distance between where we send the ray from and where we hit something.
 			hitObjects.Add(hit.collider);
 		}else{
 			right = explodeRange;//if we dont hit anything, then the bomb eplode out in the explode range
 		}
 		//left
-		if (Physics.Raycast (this.transform.position, new Vector3 (-1, 0, 0), out hit, explodeRange)) {
+		if (Physics.Raycast (this.transform.position, new Vector3 (-1, 0, 0), out hit, explodeRange*unit)) {
 			left = hit.distance;
 			hitObjects.Add(hit.collider);
 		}else{
 			left = explodeRange;
 		}
 		//up
-		if (Physics.Raycast (this.transform.position, new Vector3 (0, 0, 1), out hit, explodeRange)) {
+		if (Physics.Raycast (this.transform.position, new Vector3 (0, 0, 1), out hit, explodeRange*unit)) {
 			up = hit.distance;
 			hitObjects.Add(hit.collider);
 		} else {
 			up = explodeRange;
 		}
 		//down
-		if (Physics.Raycast (this.transform.position, new Vector3 (0, 0, -1), out hit, explodeRange)) {
+		if (Physics.Raycast (this.transform.position, new Vector3 (0, 0, -1), out hit, explodeRange*unit)) {
 			down = hit.distance;
 			hitObjects.Add(hit.collider);
 		} else {
 			down = explodeRange;
 		}
-		
 
-		for (float i = 0; i <= explodeRange; i += LevelGenerator.gameUnit) {
-			if (i<= right){
-				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(i,0, 0), Quaternion.identity);
+		Instantiate(ExplosionPrefab, this.transform.position, Quaternion.identity);
+		for (float i = 1; i <= explodeRange; i++) {
+			if (i <= right){
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(unit*i, 0, 0), Quaternion.identity);
 			}
-			if (i<=left){
-				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(-i,0, 0), Quaternion.identity);
+			if (i <= left){
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(-unit*i, 0, 0), Quaternion.identity);
 			}
-			if (i<=up){
-				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0,0,i), Quaternion.identity);	
+			if (i <= up){
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0, 0, unit*i), Quaternion.identity);	
 			}
-			if (i<=down){
-				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0,0,-i), Quaternion.identity);
+			if (i <= down){
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0, 0, -unit*i), Quaternion.identity);
 
 			}
 		}

@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class PowerupQuantity : MonoBehaviour {
-	
-	void OnCollisionEnter (Collision collision) {
+
+	void OnTriggerEnter(Collider collision) {
 		BombBag bag = collision.collider.gameObject.GetComponent<BombBag>();
-		bag.maxBombs+=1;
+		bag.IncreaseMaxBombs(1);
 		Destroy(this.gameObject);
 	}
 	

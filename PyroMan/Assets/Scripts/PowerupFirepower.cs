@@ -3,9 +3,9 @@ using System.Collections;
 
 public class PowerupFirepower : MonoBehaviour {
 	
-	void OnCollisionEnter (Collision collision) {
+	void OnTriggerEnter (Collider collision) {
 		BombBag bag = collision.collider.gameObject.GetComponent<BombBag>();
-		bag.explodeRange+=2;
+		bag.IncreaseExplodeRange(1);
 		Destroy(this.gameObject);
 	}
 
