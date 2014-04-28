@@ -40,7 +40,7 @@ public class Character : MonoBehaviour {
 	/// <summary>
 	/// Speed at which the character is moving.
 	/// </summary>
-	private float moveSpeed = 10.0f;
+	public float moveSpeed = 7.5f;
 
 	//------------ Bomb related ------------
 	private BombBag bombBag;

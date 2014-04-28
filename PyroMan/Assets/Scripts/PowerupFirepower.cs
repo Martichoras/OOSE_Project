@@ -4,11 +4,9 @@ using System.Collections;
 public class PowerupFirepower : MonoBehaviour {
 	
 	void OnCollisionEnter (Collision collision) {
-		collision.collider
+		BombBag bag = collision.collider.gameObject.GetComponent<BombBag>();
+		bag.explodeRange+=2;
+		Destroy(this.gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

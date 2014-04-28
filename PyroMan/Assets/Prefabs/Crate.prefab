@@ -81,6 +81,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375df8a2a94ad1f4fba342024e987425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerArray:
+  - {fileID: 100300, guid: 1888f567a09fb4f4d9abc71dab2af0e6, type: 2}
+  - {fileID: 100076, guid: b31daadc32ad1ee45b596369db4f7ec2, type: 2}
+  - {fileID: 100274, guid: 7c69fdff93342464bbadb3de8b96b55e, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

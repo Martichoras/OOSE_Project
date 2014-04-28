@@ -10,9 +10,9 @@ public class BombBag : MonoBehaviour {
 	/// </summary>
 	private int bombsPlaced;
 
-	private int maxBombs;
+	public int maxBombs;
 
-	private int explodeRange;
+	public int explodeRange;
 
 	private LevelGenerator level;
 	//methods

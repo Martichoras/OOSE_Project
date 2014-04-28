@@ -2,14 +2,11 @@
 using System.Collections;
 
 public class PowerupSpeed : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
+	void OnCollisionEnter (Collision collision) {
+		Character movement = collision.collider.gameObject.GetComponent<Character>();
+		movement.moveSpeed+=1.0f;
+		Destroy(this.gameObject);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

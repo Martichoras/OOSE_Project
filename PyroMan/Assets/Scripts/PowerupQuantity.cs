@@ -2,14 +2,11 @@
 using System.Collections;
 
 public class PowerupQuantity : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
+	void OnCollisionEnter (Collision collision) {
+		BombBag bag = collision.collider.gameObject.GetComponent<BombBag>();
+		bag.maxBombs+=1;
+		Destroy(this.gameObject);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

@@ -68,9 +68,11 @@ public class Bomb : MonoBehaviour {
 
 		for (int i = 0; i < hitObjects.Count; i++) {
 			GameObject obj = hitObjects[i].gameObject;
-			if(obj.tag == "Crate")
+			if(obj.tag == "Crate"){
+				Crate crate = obj.GetComponent<Crate>();
+				crate.OnExplode();
 				Destroy(obj);
-
+			}
 			else if(obj.tag == "Player")
 				Destroy(obj);
 		}
