@@ -15,6 +15,7 @@ public class Bomb : MonoBehaviour {
 	private int z;
 	private BombBag playerBag;
 
+	//attach the fire/explosion particles to the bomb script
 	public GameObject ExplosionPrefab;
 
 	// audio
@@ -46,7 +47,7 @@ public class Bomb : MonoBehaviour {
 			right = hit.distance;//distance is the distance between where we send the ray from and where we hit something.
 			hitObjects.Add(hit.collider);
 		}else{
-			right = explodeRange;//if we dont hit anything, then the bomb eplode out in the explode range
+			right = explodeRange;//if we dont hit anything, then the bomb eplode out in the explodeRange
 		}
 		//left
 		if (Physics.Raycast (this.transform.position, new Vector3 (-1, 0, 0), out hit, explodeRange)) {
@@ -70,9 +71,7 @@ public class Bomb : MonoBehaviour {
 			down = explodeRange;
 		}
 
-		//
-		//
-		//this forloop checks if 
+		///this line of code is so the Walls are not visually set on fire by the bomb explosion 
 
 		for (float i = 0; i <= explodeRange; i += LevelGenerator.gameUnit) {
 			if (i<=right){
@@ -90,7 +89,7 @@ public class Bomb : MonoBehaviour {
 			}
 		}
 
-
+		//forloop does so it explodes and destroyes what is hit
 		for (int i = 0; i < hitObjects.Count; i++) {
 			GameObject obj = hitObjects[i].gameObject;
 
@@ -122,8 +121,8 @@ public class Bomb : MonoBehaviour {
 
 	}
 	//audio
-	/*void OnCollisionEnter (Collision collision) {
+	void OnCollisionEnter (Collision collision) {
 		AudioSource.PlayClipAtPoint (ExplosionAudio,transform.position);
 		}
-*/
+
 }
