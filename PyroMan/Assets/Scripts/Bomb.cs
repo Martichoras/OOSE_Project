@@ -17,6 +17,8 @@ public class Bomb : MonoBehaviour {
 
 	public GameObject ExplosionPrefab;
 
+	// audio
+	public AudioClip ExplosionAudio;
 
 	 void Start (){
 	}
@@ -67,10 +69,13 @@ public class Bomb : MonoBehaviour {
 		} else {
 			down = explodeRange;
 		}
-		
+
+		//
+		//
+		//this forloop checks if 
 
 		for (float i = 0; i <= explodeRange; i += LevelGenerator.gameUnit) {
-			if (i<= right){
+			if (i<=right){
 				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(i,0, 0), Quaternion.identity);
 			}
 			if (i<=left){
@@ -96,7 +101,8 @@ public class Bomb : MonoBehaviour {
 			}
 			else if(obj.tag == "Player")
 				Destroy(obj);
-
+			else if(obj.tag == "PowerUp")
+				Destroy(obj);
 		}
 
 
@@ -115,6 +121,9 @@ public class Bomb : MonoBehaviour {
 		this.playerBag = playerBag;
 
 	}
-
-
+	//audio
+	/*void OnCollisionEnter (Collision collision) {
+		AudioSource.PlayClipAtPoint (ExplosionAudio,transform.position);
+		}
+*/
 }
