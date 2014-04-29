@@ -2262,7 +2262,7 @@ GameObject:
   - 4: {fileID: 400300}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400000}
-  - 65: {fileID: 6500000}
+  - 135: {fileID: 13500000}
   m_Layer: 0
   m_Name: Powerup_Firepower
   m_TagString: PowerUp
@@ -4073,8 +4073,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100300}
   m_LocalRotation: {x: .471754551, y: 0, z: 0, w: .88172996}
-  m_LocalPosition: {x: -19.4373055, y: -.164867938, z: 10.4847927}
-  m_LocalScale: {x: 37.4462166, y: 37.4462166, z: 37.4462166}
+  m_LocalPosition: {x: -1.81145287, y: -.667246819, z: 2.84595752}
+  m_LocalScale: {x: 32.5782089, y: 32.5782089, z: 32.5782089}
   m_Children:
   - {fileID: 400298}
   - {fileID: 400296}
@@ -4110,18 +4110,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100292}
   m_Mesh: {fileID: 4300000, guid: 82c9957eaf6edc048bedf88903ef84da, type: 3}
---- !u!65 &6500000
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100300}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: .0599999987, y: .0599999987, z: .00999999978}
-  m_Center: {x: 0, y: .0299999993, z: 0}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -4147,6 +4135,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5bfb8b77f2dfb488ce7c8ad0c91452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &13500000
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .0250000004
+  m_Center: {x: 0, y: .00850000046, z: -.00999999978}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

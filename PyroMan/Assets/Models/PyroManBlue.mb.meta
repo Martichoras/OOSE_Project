@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 2c37ef45c67e54a4fb5b2c56fbce59ff
+guid: 0bbc7a036d5d4b745be9f98bf861837e
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: bottom
-    100002: bottom1
-    100004: //RootNode
+    100000: //RootNode
+    100002: bottom
+    100004: bottom1
     100006: group
     100008: group1
     100010: group2
@@ -21,9 +21,25 @@ ModelImporter:
     100030: pSphere3
     100032: pSphere4
     100034: pSphere5
-    400000: bottom
-    400002: bottom1
-    400004: //RootNode
+    100036: blueArmLeft
+    100038: blueArmRight
+    100040: blueBody
+    100042: figure
+    100044: pasted__pSphere6
+    100046: polySurface1
+    100048: transform1
+    100050: transform10
+    100052: transform2
+    100054: transform3
+    100056: transform4
+    100058: transform5
+    100060: transform6
+    100062: transform7
+    100064: transform8
+    100066: transform9
+    400000: //RootNode
+    400002: bottom
+    400004: bottom1
     400006: group
     400008: group1
     400010: group2
@@ -39,6 +55,22 @@ ModelImporter:
     400030: pSphere3
     400032: pSphere4
     400034: pSphere5
+    400036: blueArmLeft
+    400038: blueArmRight
+    400040: blueBody
+    400042: figure
+    400044: pasted__pSphere6
+    400046: polySurface1
+    400048: transform1
+    400050: transform10
+    400052: transform2
+    400054: transform3
+    400056: transform4
+    400058: transform5
+    400060: transform6
+    400062: transform7
+    400064: transform8
+    400066: transform9
     2300000: pasted__pSphere1
     2300002: pasted__pSphere4
     2300004: pasted__pSphere5
@@ -49,6 +81,11 @@ ModelImporter:
     2300014: pSphere3
     2300016: pSphere4
     2300018: pSphere5
+    2300020: blueArmLeft
+    2300022: blueArmRight
+    2300024: blueBody
+    2300026: pasted__pSphere6
+    2300028: polySurface1
     3300000: pasted__pSphere1
     3300002: pasted__pSphere4
     3300004: pasted__pSphere5
@@ -59,6 +96,11 @@ ModelImporter:
     3300014: pSphere3
     3300016: pSphere4
     3300018: pSphere5
+    3300020: blueArmLeft
+    3300022: blueArmRight
+    3300024: blueBody
+    3300026: pasted__pSphere6
+    3300028: polySurface1
     4300000: pSphere1
     4300002: pasted__pSphere1
     4300004: pSphere2
@@ -69,6 +111,11 @@ ModelImporter:
     4300014: pSphere5
     4300016: pasted__pSphere5
     4300018: pasted__pSphere5
+    4300020: blueBody
+    4300022: blueArmLeft
+    4300024: blueArmRight
+    4300026: pasted__pSphere6
+    4300028: polySurface1
     9500000: //RootNode
   materials:
     importMaterials: 1
