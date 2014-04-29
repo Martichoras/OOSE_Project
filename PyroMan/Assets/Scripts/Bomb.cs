@@ -16,8 +16,12 @@ public class Bomb : MonoBehaviour {
 	private BombBag playerBag;
 	private bool isExploded = false;
 
+	//attach the fire/explosion particles to the bomb script
 	public GameObject ExplosionPrefab;
 
+	//the explotion sound
+	public AudioClip[] ExplosionSound;
+	public AudioClip MenDieSound;
 
 	 void Start (){
 	}
@@ -32,11 +36,14 @@ public class Bomb : MonoBehaviour {
 
 	}
 
+	//The explosion function 
 	public void Explode(){
 		if (this.isExploded)
 			return;
 		
 		this.isExploded = true;
+		//Makes the bomb say an explosion sound
+		AudioSource.PlayClipAtPoint(ExplosionSound[Random.Range(0, ExplosionSound.Length)], Camera.main.transform.position, 0.5f );
 
 		float up, down, left, right;
 		float unit = LevelGenerator.gameUnit;
@@ -48,6 +55,8 @@ public class Bomb : MonoBehaviour {
 
 		// Animate the explosion with some spawned particles
 		Instantiate(ExplosionPrefab, this.transform.position, Quaternion.identity);
+
+		//check if there is a solid wall. if there is then the particle fire will not burn the wall.
 		for (float i = 1; i <= explodeRange; i++) {
 			float range = i * unit;
 			if (range <= right){
@@ -61,7 +70,6 @@ public class Bomb : MonoBehaviour {
 			}
 			if (range <= down){
 				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0, 0, -unit*i), Quaternion.identity);
-
 			}
 		}
 		
@@ -89,9 +97,13 @@ public class Bomb : MonoBehaviour {
 			return (origin-pos).magnitude; // Return the distance to the crate (the crate will absorb the explosion so things behind it wont be hit)
 		}
 		else if (obj.tag == "Player" || obj.tag == "PowerUp") {
+			if(obj.tag == "Player"){
+				AudioSource.PlayClipAtPoint (MenDieSound ,Camera.main.transform.position);
+			}
 			Destroy(obj);
 			return (origin-pos).magnitude + this.ExplodeInDirection(pos, direction, distance - (origin-pos).magnitude); // Test how much further we can explode
 		}
+
 		else if (obj.tag == "Bomb") {
 			Bomb bomb = obj.GetComponent<Bomb>();
 			bomb.Explode();
@@ -103,6 +115,7 @@ public class Bomb : MonoBehaviour {
 		
 	}
 
+
 	public void SetBombData(int x, int z, int radius, BombBag playerBag){
 		this.x = x;
 		this.z = z;
@@ -110,6 +123,5 @@ public class Bomb : MonoBehaviour {
 		this.playerBag = playerBag;
 
 	}
-
 
 }
