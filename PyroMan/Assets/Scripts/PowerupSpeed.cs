@@ -3,9 +3,12 @@ using System.Collections;
 
 public class PowerupSpeed : MonoBehaviour {
 
+	public AudioClip[] powerUpSound;
+
 	void OnTriggerEnter(Collider collision) {
 		Character movement = collision.collider.gameObject.GetComponent<Character>();
 		movement.IncreaseMoveSpeed(1.0f);
+		AudioSource.PlayClipAtPoint(powerUpSound [Random.Range (0, powerUpSound.Length)], transform.position, .50F);
 		Destroy(this.gameObject);
 	}
 	

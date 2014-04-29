@@ -19,6 +19,8 @@ public class Bomb : MonoBehaviour {
 	//attach the fire/explosion particles to the bomb script
 	public GameObject ExplosionPrefab;
 
+	//the explotion sound
+	public AudioClip ExplosionSound;
 
 	 void Start (){
 	}
@@ -38,6 +40,8 @@ public class Bomb : MonoBehaviour {
 			return;
 		
 		this.isExploded = true;
+		//Makes the bomb say an explosion sound
+		AudioSource.PlayClipAtPoint(ExplosionSound,transform.position);
 
 		float up, down, left, right;
 		float unit = LevelGenerator.gameUnit;
@@ -104,6 +108,7 @@ public class Bomb : MonoBehaviour {
 		
 	}
 
+
 	public void SetBombData(int x, int z, int radius, BombBag playerBag){
 		this.x = x;
 		this.z = z;
@@ -112,8 +117,8 @@ public class Bomb : MonoBehaviour {
 
 	}
 	//audio
-	void OnCollisionEnter (Collision collision) {
-		AudioSource.PlayClipAtPoint (ExplosionAudio,transform.position);
-		}
+//	void OnCollisionEnter (Collision collision) {
+
+		//}
 
 }
