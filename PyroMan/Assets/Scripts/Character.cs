@@ -41,6 +41,7 @@ public class Character : MonoBehaviour {
 	/// Speed at which the character is moving.
 	/// </summary>
 	public float moveSpeed = 7.5f;
+	public void IncreaseMoveSpeed(float val) { this.moveSpeed += val; }
 
 	//------------ Bomb related ------------
 	private BombBag bombBag;
@@ -93,7 +94,6 @@ public class Character : MonoBehaviour {
 			v = Input.GetAxis("VerticalP1"); // Up & down
 			if (Input.GetButtonDown("BombP1")) {
 				this.PlaceBomb();
-				Debug.Log("bomb P1");
 			}
 		}
 		else if (this.player == 2) {
@@ -101,7 +101,6 @@ public class Character : MonoBehaviour {
 			v = Input.GetAxis("VerticalP2"); // Up & down
 			if (Input.GetButtonDown("BombP2")) {
 				this.PlaceBomb();
-				Debug.Log("bomb P2");
 			}
 		}
 
