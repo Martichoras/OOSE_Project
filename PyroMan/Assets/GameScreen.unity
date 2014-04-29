@@ -159,8 +159,8 @@ MonoBehaviour:
   Crate: {fileID: 100000, guid: 16bc5f134b7ddf047bc2240abfb7852c, type: 2}
   Wall_solid: {fileID: 100000, guid: ba083ebcbb407d542a67936fc19c410a, type: 2}
   Player:
-  - {fileID: 100034, guid: ce39ffc7bfa13bf4b99de0902e07850c, type: 2}
-  - {fileID: 100034, guid: 8ad06b462791d65448a271a1b9bf64a5, type: 2}
+  - {fileID: 100056, guid: 807a4a9bdbc7fe24dbf007b459dd4933, type: 2}
+  - {fileID: 100056, guid: e1b53dcad5453b347a39c51dc75fc5d1, type: 2}
 --- !u!1 &1640207639
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1640207639}
   m_LocalRotation: {x: .555687845, y: 0, z: 0, w: .831391096}
-  m_LocalPosition: {x: 0, y: 41.4433823, z: -20.0942459}
+  m_LocalPosition: {x: 0, y: 33.0831261, z: -16.6340847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -11,8 +11,10 @@ public class BombBag : MonoBehaviour {
 	private int bombsPlaced;
 
 	public int maxBombs;
+	public void IncreaseMaxBombs(int val) { this.maxBombs += val; }
 
 	public int explodeRange;
+	public void IncreaseExplodeRange(int val) { this.explodeRange += val; }
 
 	private LevelGenerator level;
 	//methods
@@ -27,7 +29,7 @@ public class BombBag : MonoBehaviour {
 	//maxBomb
 		maxBombs = 1;
 
-		explodeRange = 10;
+		explodeRange = 1;
 	}
 	
 
