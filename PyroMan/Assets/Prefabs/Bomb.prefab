@@ -221,6 +221,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplosionPrefab: {fileID: 100000, guid: 0eef0aabf89891b4b94494e0e4b3dae0, type: 2}
+  ExplosionSound:
+  - {fileID: 8300000, guid: 414dcb01cac81d64d9f2315f433f5995, type: 3}
+  - {fileID: 8300000, guid: 8cca1cc4f29b41542afd9d67aa4614c1, type: 3}
+  MenDieSound: {fileID: 8300000, guid: 2aa0bc723f5ac834280d783257c086cb, type: 3}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

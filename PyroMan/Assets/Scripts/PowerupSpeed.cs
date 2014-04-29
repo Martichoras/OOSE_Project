@@ -8,7 +8,7 @@ public class PowerupSpeed : MonoBehaviour {
 	void OnTriggerEnter(Collider collision) {
 		Character movement = collision.collider.gameObject.GetComponent<Character>();
 		movement.IncreaseMoveSpeed(1.0f);
-		AudioSource.PlayClipAtPoint(powerUpSound [Random.Range (0, powerUpSound.Length)], transform.position, .50F);
+		AudioSource.PlayClipAtPoint(powerUpSound [Random.Range (0, powerUpSound.Length)], Camera.main.transform.position);
 		Destroy(this.gameObject);
 	}
 	

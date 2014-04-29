@@ -8,7 +8,7 @@ public class PowerupFirepower : MonoBehaviour {
 	void OnTriggerEnter (Collider collision) {
 		BombBag bag = collision.collider.gameObject.GetComponent<BombBag>();
 		bag.IncreaseExplodeRange(1);
-		AudioSource.PlayClipAtPoint(powerUpSound [Random.Range (0, powerUpSound.Length)], transform.position, .50F);
+		AudioSource.PlayClipAtPoint(powerUpSound [Random.Range (0, powerUpSound.Length)], Camera.main.transform.position, .50F);
 		Destroy(this.gameObject);
 	}
 
