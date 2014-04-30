@@ -14,13 +14,14 @@ public class Bomb : MonoBehaviour {
 	private int x;
 	private int z;
 	private BombBag playerBag;
-	private bool isExploded = false;
+	private bool isExploded = false;//set isExploded to be false.
 
 	//attach the fire/explosion particles to the bomb script
 	public GameObject ExplosionPrefab;
 
-	//the explotion sound
+	//the explotion sound array.
 	public AudioClip[] ExplosionSound;
+	//the die sound (hard to hear because of the explsionsound playes at the same time.)
 	public AudioClip MenDieSound;
 
 	 void Start (){
@@ -29,8 +30,8 @@ public class Bomb : MonoBehaviour {
 	void Update(){
 		//timerCount
 		timer += Time.deltaTime;
-		// checker if time is equal to or bigger than timerMax, is important because it is floats
-		if (timer >= timerMax) {
+		// checker if time is equal to or bigger than timerMax, 
+		if (timer >= timerMax) {//if time is bigger or equal to timerMax then run the Explode function.
 			Explode ();
 		}
 
@@ -38,15 +39,15 @@ public class Bomb : MonoBehaviour {
 
 	//The explosion function 
 	public void Explode(){
-		if (this.isExploded)
+		if (this.isExploded)//this function does so if to bomb is beside each other and one goes of before the other, then is the other also explodes, but the other will not let the first go off again.
 			return;
 		
-		this.isExploded = true;
-		//Makes the bomb say an explosion sound
-		AudioSource.PlayClipAtPoint(ExplosionSound[Random.Range(0, ExplosionSound.Length)], Camera.main.transform.position, 0.5f );
+		this.isExploded = true;//set isExploded to true.
+
+		AudioSource.PlayClipAtPoint(ExplosionSound[Random.Range(0, ExplosionSound.Length)], Camera.main.transform.position, 0.5f );//plays the explosion sound when the bomb explodes
 
 		float up, down, left, right;
-		float unit = LevelGenerator.gameUnit;
+		float unit = LevelGenerator.gameUnit;// assign LevelGenerator which calls gameUnit, to unit.
 
 		// Check how far we can explode in each direction
 		right = this.ExplodeInDirection(this.transform.position, new Vector3(1, 0, 0), this.explodeRange * unit);
@@ -57,27 +58,27 @@ public class Bomb : MonoBehaviour {
 		// Animate the explosion with some spawned particles
 		Instantiate(ExplosionPrefab, this.transform.position, Quaternion.identity);
 
-		//check if possible go make the explosion prefabs in eaxh drection
-		for (float i = 1; i <= explodeRange; i++) {
-			float range = i * unit;
-			if (range <= right){
-				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(unit*i, 0, 0), Quaternion.identity);
+		//check if possible go make the explosion prefabs in each direction
+		for (float i = 1; i <= explodeRange; i++) {//forloop, so everytime explodeRange is less then or equal to i, then add i with one
+			float range = i * unit;//assign range to i*unit
+			if (range <= right){//if range is less than or equal to right (read next comment below)
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(unit*i, 0, 0), Quaternion.identity);//instansiates the ExplosionPrefab for the bomb instans for the explosions startposision and continues in the right direction in a certain range, Quaternion.identity means that it is not rotated
 			}
-			if (range <= left){
-				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(-unit*i, 0, 0), Quaternion.identity);
+			if (range <= left){//if range is less than or equal to left (read next comment below)
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(-unit*i, 0, 0), Quaternion.identity);//instansiates the ExplosionPrefab for the bomb instans for the explosions startposision and continues in the left direction in a certain range, Quaternion.identity means that it is not rotated
 			}
-			if (range <= up){
-				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0, 0, unit*i), Quaternion.identity);	
+			if (range <= up){//if range is less than or equal to up (read next comment below)
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0, 0, unit*i), Quaternion.identity);	//instansiates the ExplosionPrefab for the bomb instans for the explosions startposision and continues in the up direction in a certain range, Quaternion.identity means that it is not rotated
 			}
-			if (range <= down){
-				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0, 0, -unit*i), Quaternion.identity);
+			if (range <= down){//if range is less than or equal to down (read next comment below)
+				Instantiate(ExplosionPrefab, this.transform.position + new Vector3(0, 0, -unit*i), Quaternion.identity);//instansiates the ExplosionPrefab for the bomb instans for the explosions startposision and continues in the down direction in a certain range, Quaternion.identity means that it is not rotated
 			}
 		}
 		
 		//call playerBag to say that bomb is exploded/destroyed - so bombBag will create new bomb. This is done by decreasing bombPlaced
 		//Instantiate the explosion and explode!!!
-		Destroy (gameObject);
-		playerBag.AfterExplosion (x,z);
+		Destroy (gameObject);//destroys the gameObject
+		playerBag.AfterExplosion (x,z);//playerBag calls AfterExplosion with the inputs x,z.
 	}
 	//in the explosion direction 
 	private float ExplodeInDirection(Vector3 origin, Vector3 direction, float distance) {
