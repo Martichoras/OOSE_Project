@@ -11,15 +11,13 @@ public class BombBag : MonoBehaviour {
 	private int bombsPlaced;
 
 	public int maxBombs;
-	public void IncreaseMaxBombs(int val) { this.maxBombs += val; }
+	public void IncreaseMaxBombs(int val) { this.maxBombs += val; }//increases the number of maxBombs the player are allowed to carry by "val"
 
 	public int explodeRange;
-	public void IncreaseExplodeRange(int val) { this.explodeRange += val; }
+	public void IncreaseExplodeRange(int val) { this.explodeRange += val; }//increases the number of explodeRange by "val"
 
 	private LevelGenerator level;
-	//methods
 
-	// Use this for initialization
 	void Start () {
 
 		GameObject temp = GameObject.FindGameObjectWithTag ("LevelControl");//finds levelGenerator
@@ -37,11 +35,11 @@ public class BombBag : MonoBehaviour {
 		//check if possilbe to place bomb
 		//1. if it has any bombs "left" to place
 		if (maxBombs > bombsPlaced){
-			//2. if possilbe place bomb under the player - Call bomb class - Emil dose this
 		
-			//3. call levelGenerator - and change 0 to eg 3 in the the array
+			//2. call levelGenerator - and change 0 to eg 3 in the the array
 			GameObject bombObject = this.level.PlaceObject(bomb,x,z, LevelGenerator.ObjectType.Bomb) as GameObject;
 
+			//3.calls the Bomb class 
 			Bomb bombScript = bombObject.GetComponent<Bomb>(); 
 			bombScript.SetBombData(x,z, explodeRange, this);
 
@@ -50,7 +48,7 @@ public class BombBag : MonoBehaviour {
 
 		}
 
-	}
+	}//5. descrease bombPlaced and thereby allow the player to place a new bomb
 	public void AfterExplosion(int x, int z){
 		bombsPlaced--;
 		level.ClearPosition(x,z);

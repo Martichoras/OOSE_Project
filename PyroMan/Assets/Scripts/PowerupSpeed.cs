@@ -5,12 +5,12 @@ using System.Collections;
 /// </summary>
 public class PowerupSpeed : MonoBehaviour {
 
-	public AudioClip[] powerUpSound;
+	public AudioClip[] powerUpSound;// audio array
 	
 	void OnTriggerEnter(Collider collision) { // Activates function when game object collides with player trigger
         Character movement = collision.collider.gameObject.GetComponent<Character>(); // Retrieves info from Character.cs
         movement.IncreaseMoveSpeed(1.0f); // Increases movement speed by adding 1 to IncreaseMoveSpeed in Character.cs
-		AudioSource.PlayClipAtPoint(powerUpSound [Random.Range (0, powerUpSound.Length)], Camera.main.transform.position);
+		AudioSource.PlayClipAtPoint(powerUpSound [Random.Range (0, powerUpSound.Length)], Camera.main.transform.position);// playes a random sound from powerUpSound array
 		Destroy(this.gameObject); // Power-up is removed from scene
 	}
 	
