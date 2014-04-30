@@ -57,7 +57,7 @@ public class Bomb : MonoBehaviour {
 		// Animate the explosion with some spawned particles
 		Instantiate(ExplosionPrefab, this.transform.position, Quaternion.identity);
 
-		//check if there is a solid wall. if there is then the particle fire will not burn the wall.
+		//check if possible go give 
 		for (float i = 1; i <= explodeRange; i++) {
 			float range = i * unit;
 			if (range <= right){
