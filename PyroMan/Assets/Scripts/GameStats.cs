@@ -13,11 +13,10 @@ public class GameStats {
 	/// </summary>
 	private static Dictionary<int, int> winningStats = new Dictionary<int, int>();
 	
-	//void Awake () {
-	//	this.enabled = false;
-	//	DontDestroyOnLoad(this.gameObject);
-	//}
-
+	/// <summary>
+	/// Saves the ID of the player winning current game. If more than one game has been played in the current session, stats showing how many times each player has won will be saved.
+	/// </summary>
+	/// <param name="player">ID of the winning player</param>
 	public static void OnGameWon(int player) {
 		lastPlayerWinning = player;
 		if (winningStats.ContainsKey(player))
