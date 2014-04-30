@@ -22,7 +22,7 @@ To contribute to the development you can fork and work on this repository, but y
 If you just want to try out our game or test it for bugs,
 go to the [releases page](https://github.com/Martichoras/OOSE_Project/releases) and download the latest version of the game.
 
-**Current release version: Beta-v1.0**
+**Current release version: Beta-v2.0**
 
 <a name="instructions-and-controls"></a>
 ## Instructions and controls ##
