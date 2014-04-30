@@ -57,7 +57,7 @@ public class Bomb : MonoBehaviour {
 		// Animate the explosion with some spawned particles
 		Instantiate(ExplosionPrefab, this.transform.position, Quaternion.identity);
 
-		//check if possible go give 
+		//check if possible go make the explosion prefabs in eaxh drection
 		for (float i = 1; i <= explodeRange; i++) {
 			float range = i * unit;
 			if (range <= right){
@@ -82,19 +82,21 @@ public class Bomb : MonoBehaviour {
 	//in the explosion direction 
 	private float ExplodeInDirection(Vector3 origin, Vector3 direction, float distance) {
 		if (distance <= 0.0f)
-			return 0;
+			return 0;//returns 0 if distance is less or equal to 0.0f
 
-		RaycastHit hit;// makes a raycast to check if it hits anything and then return the distance between where the raycast started and the object which was hit. 
-		if (!Physics.Raycast(origin, direction, out hit, distance))
-			return distance;
+		RaycastHit hit; //check if raycast hits anything
+		if (!Physics.Raycast(origin, direction, out hit, distance))// cast a raycast to check if it does not hits anything, if it does not, then it only returns the distance the ray was cast in.
+			return distance;//retrns the distance if it does not hit anything.
 
+
+		//if the raycast hits an object then the object is assigned to hit.colider.gameObject. 
 		GameObject obj = hit.collider.gameObject;// assigning obj to hit.colider.gameObject
-		Vector3 pos = obj.transform.position;// assigning pos to obj.transform.position
+		Vector3 pos = obj.transform.position;// and assigning pos to obj.transform.position
 
 		if (obj.tag == "Crate") {// check it obj is with the tag Crate, if it is then GetComponent to Crate class, destroy obj
 			Crate crate = obj.GetComponent<Crate>();// assigning crate to obj.transform.position;
 			crate.OnExplode();
-			Destroy(obj);
+			Destroy(obj);//destroy the object with the  "Crate" tag
 			return (origin-pos).magnitude; // Return the distance to the crate (the crate will absorb the explosion so things behind it wont be hit)
 		}
 		else if (obj.tag == "Player" || obj.tag == "PowerUp") {// check if object is Player or PowerUp
@@ -110,14 +112,14 @@ public class Bomb : MonoBehaviour {
 			bomb.Explode();//instead of destroing the bomb, then it starts its explosion function instead
 			return (origin - pos).magnitude + this.ExplodeInDirection(pos, direction, distance - (origin - pos).magnitude); // Test how much further we can explode
 		}
-		else { // We must have hit a Wall or nothing
+		else { // We must have hit a Wall
 			return (origin - pos).magnitude - LevelGenerator.gameUnit; // Return the distance to the position before the wall (the wall can't explode)
 		}
 		
 	}
 
 
-	public void SetBombData(int x, int z, int radius, BombBag playerBag){//set bobmData...
+	public void SetBombData(int x, int z, int radius, BombBag playerBag){//set the bobmData...
 		this.x = x;
 		this.z = z;
 		this.explodeRange = radius;

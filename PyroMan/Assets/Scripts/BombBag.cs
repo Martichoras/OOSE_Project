@@ -41,17 +41,17 @@ public class BombBag : MonoBehaviour {
 
 			//3.calls the Bomb class 
 			Bomb bombScript = bombObject.GetComponent<Bomb>(); 
-			bombScript.SetBombData(x,z, explodeRange, this);
+			bombScript.SetBombData(x,z, explodeRange, this);//
 
 		//4. increase bombPlaced
 			bombsPlaced++;
 
 		}
 
-	}//5. descrease bombPlaced and thereby allow the player to place a new bomb
+	}
 	public void AfterExplosion(int x, int z){
-		bombsPlaced--;
-		level.ClearPosition(x,z);
+		bombsPlaced--;//5. descrease bombPlaced and thereby allow the player to place a new bomb
+		level.ClearPosition(x,z);//level calls ClearPosition for x,z 
 	}
 
 }
